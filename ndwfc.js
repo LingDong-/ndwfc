@@ -1,5 +1,5 @@
-var WFC = function({nd,weights,rules}){
-  var wave = {}
+var WFC = function({nd,weights,rules,wave}){
+  wave = wave || {};
   var wavefront = {}
   var n_patterns = weights.length
   var wavefront = {}
@@ -150,7 +150,7 @@ var WFC = function({nd,weights,rules}){
       }
       for (var k in wavefront){
         var s = wavefront[k].reduce((a,b) => a + b, 0)
-        var oh = wavefront[k].map(x=>x/s);
+        var oh = wavefront[k].map(x=>(s==0?0:x/s));
         result[k] = oh;
       }
       return result;
