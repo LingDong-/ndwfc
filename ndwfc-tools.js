@@ -2,6 +2,8 @@ var WFCTool2D = function(){
   var tiles = []
   var colors = {}
   var weights = []
+  var n_prototypes = 0
+  var formulae = []
   
   
   var transformBank = {
@@ -70,6 +72,7 @@ var WFCTool2D = function(){
   this.addTile = function(s,{transforms="auto",weight=1}={}){
     var t = s.split("\n").map(x=>x.split(""))
     tiles.push(t);
+    formulae.push([ n_prototypes, '', t ])
     weights.push(weight)
     
     var tests = []
@@ -97,13 +100,18 @@ var WFCTool2D = function(){
       if (ok){
         tiles.push(tests[i])
         weights.push(weight)
+        formulae.push([ n_prototypes, transforms[i], tests[i] ])
       }
     }
-    console.log(tiles)
+    n_prototypes++;
   }
   
   this.addColor = function(symbol, color){
     colors[symbol] = color
+  }
+  
+  this.getTileFormulae = function(){
+    return formulae;
   }
   
   this.generateWFCInput = function(){
@@ -168,6 +176,7 @@ var WFCTool2D = function(){
               rgb[1] += colors[tiles[ii][i][j]][1]*v[ii];
               rgb[2] += colors[tiles[ii][i][j]][2]*v[ii];
             }
+            rgb = rgb.map(Math.round)
           }
           ctx.fillStyle = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
           ctx.fillRect(x+cw*j/w,y+ch*i/h,cw/w+1,ch/h+1);
@@ -184,6 +193,8 @@ var WFCTool3D = function(){
   var tiles = []
   var materials = {}
   var weights = []
+  var n_prototypes = 0
+  var formulae = []
   
   
   var transformBank = {
@@ -307,6 +318,7 @@ var WFCTool3D = function(){
   this.addTile = function(s,{transforms="auto",weight=1}={}){
     var t = s.map(y=>y.split("\n").map(x=>x.split("")));
     tiles.push(t);
+    formulae.push([ n_prototypes, '', t ])
     weights.push(weight)
     
     var tests = []
@@ -334,13 +346,18 @@ var WFCTool3D = function(){
       if (ok){
         tiles.push(tests[i])
         weights.push(weight)
+        formulae.push([ n_prototypes, transforms[i], tests[i] ])
       }
     }
-    console.log(tiles)
+    n_prototypes++;
   }
   
   this.addMaterial = function(symbol, material){
     materials[symbol] = material;
+  }
+  
+  this.getTileFormulae = function(){
+    return formulae;
   }
   
   this.generateWFCInput = function(){

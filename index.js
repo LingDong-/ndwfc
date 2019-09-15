@@ -642,7 +642,8 @@ function wfcDemo2D(tilesetName){
     }
   }
 
-
+  console.log(tool.getTileFormulae())
+  
   worker =new Worker(URL.createObjectURL(new Blob(["var WFC="+WFC.toString()+';('+workerCode.toString()+')()'])));// new Worker('worker.js');
 
   worker.postMessage({
@@ -768,6 +769,8 @@ function wfcDemo3D(tilesetName){
       postMessage({wave:wfc.readout()})
     }
   }
+  
+  console.log(tool.getTileFormulae())
   
   worker =new Worker(URL.createObjectURL(new Blob(["var WFC="+WFC.toString()+';('+workerCode.toString()+')()'])));// new Worker('worker.js');
 
