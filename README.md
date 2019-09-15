@@ -11,10 +11,10 @@ A Wave Function Collapse implementation with infinite canvas in arbitrary number
 - 2D/3D/ND
 
 
-![](screenshots/gif01.gif)
-![](screenshots/gif02.gif)
-![](screenshots/gif03.gif)
-![](screenshots/gif04.gif)
+<img src="screenshots/gif01.gif" width="100%">
+<img src="screenshots/gif02.gif" width="100%">
+<img src="screenshots/gif03.gif" width="100%">
+<img src="screenshots/gif04.gif" width="100%">
 
 
 ## Installation
